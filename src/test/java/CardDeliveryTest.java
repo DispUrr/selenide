@@ -55,7 +55,7 @@ public class CardDeliveryTest {
         $("[data-test-id=phone] input").setValue("+79513574532");
         $("[data-test-id=agreement]").click();
         $$("button").find(exactText("Забронировать")).click();
-        $("[data-test-id=date].input_invalid .input__sub").shouldHave(exactText("Заказ на выбранную дату невозможен"));
+        $("[data-test-id=date] .input__sub").shouldHave(exactText("Заказ на выбранную дату невозможен"));
     }
 
     @Test
@@ -99,7 +99,7 @@ public class CardDeliveryTest {
         $("[data-test-id=agreement]").click();
         $$("button").find(exactText("Забронировать")).click();
         $("[data-test-id=phone].input_invalid .input__sub")
-                .shouldHave(exactText("Телефон указан неверно. Должно быть 11 цифр, например, +79012345678."));    }
+                .shouldHave(exactText("Поле обязательно для заполнения"));    }
 
     @Test
     void shouldTestWithoutAgreement() {
