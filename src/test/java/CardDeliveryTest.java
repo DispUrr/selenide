@@ -6,8 +6,7 @@ import org.openqa.selenium.Keys;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-import static com.codeborne.selenide.Condition.exactText;
-import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.*;
 
 public class CardDeliveryTest {
@@ -28,7 +27,8 @@ public class CardDeliveryTest {
         $("[data-test-id=phone] input").setValue("+79513574532");
         $("[data-test-id=agreement]").click();
         $$("button").find(exactText("Забронировать")).click();
-        $("[data-test-id=notification]").waitUntil(Condition.visible, 15000);
+        $(" [data-test-id=notification]").waitUntil(visible, 1500000)
+                .shouldHave(text("Успешно! Встреча успешно забронирована на " + date));
     }
 
     @Test
@@ -108,7 +108,7 @@ public class CardDeliveryTest {
         $("[data-test-id=date] input").sendKeys(Keys.DELETE);
         $("[data-test-id=date] input").sendKeys(date);
         $("[data-test-id=name] input").setValue("Мамин-Сибиряк Дмитрий");
-        $("[data-test-id=phone] input").setValue("");
+        $("[data-test-id=phone] input").setValue("+79513574532");
         $$("button").find(exactText("Забронировать")).click();
         boolean exists = $("[data-test-id=agreement].input_invalid .checkbox__text").exists();
     }
